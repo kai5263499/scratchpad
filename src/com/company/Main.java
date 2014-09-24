@@ -83,7 +83,7 @@ public class Main {
     }
 
     public static HashMap<String,Integer> wordCount(String string) {
-        string = string.toLowerCase().replaceAll("[^a-z]", " ");
+        string = string.toLowerCase().replaceAll("[^a-z ]", "");
         HashMap<String,Integer> wordcount = new HashMap<String,Integer>();
         String[] words = string.split("\\s+");
         for(String word: words) {
