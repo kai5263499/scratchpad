@@ -83,8 +83,9 @@ public class Main {
     }
 
     public static HashMap<String,Integer> wordCount(String string) {
+        string = string.toLowerCase().replaceAll("[^a-z]", " ");
         HashMap<String,Integer> wordcount = new HashMap<String,Integer>();
-        String[] words = string.split(" ");
+        String[] words = string.split("\\s+");
         for(String word: words) {
             Integer count = wordcount.get(word);
             if(count == null) {
@@ -106,7 +107,6 @@ public class Main {
         System.out.println(paths(testTree));
 
         System.out.println("wordCount");
-        System.out.println(wordCount("The quick brown fox jumped over the lazy dogs."));
         System.out.println(wordCount("Genesis 1:1: In the beginning, God created the heavens and the earth.\n" +
                 "Genesis 1:2: The earth was without form and void, and darkness was over the face of the deep. And the Spirit of God was hovering over the face of the waters. \n" +
                 "\n" +
