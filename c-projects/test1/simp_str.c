@@ -34,18 +34,7 @@ void simp_str_destroy(simp_str* s) {
 }
 
 simp_str* simp_str_copy2(simp_str *in) {
-	simp_str *ret = malloc(sizeof(simp_str));
-
-	while(*in->str!='\0') {
-      ret->str=in->str;
-      ret->str++;
-      in->str++;
-    }
-    ret->str='\0';
-
-	ret->buf_len = in->buf_len;
-	ret->len = ret->len;
-
+	simp_str *ret = simp_str_init(in->str, in->buf_len);
 	return ret;
 }
 
