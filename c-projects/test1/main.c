@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <malloc.h>
 #include "include/simp_str.h"
 
@@ -46,6 +47,7 @@ int main(int argc, char **argv)
 
 	printf("created a string [%s] with len [%zu] and buf_len [%zu]\n\n", str1->str, str1->len, str1->buf_len);
 
+	printf("str1 and str1 match result: %i\n\n", simp_str_equals(str1, str1));
 	printf("str1 and str2 match result: %i\n\n", simp_str_equals(str1, str2));
 	printf("str1 and str3 match result: %i\n\n", simp_str_equals(str1, str3));
 

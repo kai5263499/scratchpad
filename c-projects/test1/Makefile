@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I./include -Wall
+CFLAGS=-I./include -I/usr/include/sys -Wall
 DEPS = simp_str.h
 OBJ = main.o simp_str.o 
 
