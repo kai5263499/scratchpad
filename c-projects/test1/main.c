@@ -1,75 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <malloc.h>
-#include <assert.h>
-#include <stdarg.h>
-#include "include/header.h"
-
-simp_str* simp_str_init(const char* _string, size_t _size) {
-	simp_str *mystr = malloc(sizeof(simp_str));
-
-	mystr->buf_len = _size;
-	mystr->str = (char *)_string;
-	mystr->len = strlen(_string);
-
-	return mystr;
-}
-
-int simp_str_equals(simp_str *s1, simp_str *s2) {
-	int s1_len = strlen(s1->str);
-	if(s1->len != s2->len || s1->buf_len != s2->buf_len || s1_len != strlen(s2->str)) return -1;
-
-	int i;
-	for(i=0;i<s1_len;i++) {
-		if(s1->str[i] != s2->str[i]) return -1;
-	}
-
-	return 1;
-}
-
-void simp_str_destroy(simp_str* s) {
-	free(s);
-}
-
-simp_str* simp_str_copy2(simp_str *in) {
-	simp_str *ret = malloc(sizeof(simp_str));
-
-	// I'm losing 14 bytes here and I don't know why..
-	// size_t str_len = strlen(in->str)-2;
-
-	// //ret->str = malloc((ret->len-1));
-	// ret->str = malloc(sizeof(char)*(str_len+1));
-	// strncpy(ret->str, in->str, str_len);
-	// ret->str[str_len] = '\0';
-
-	while(*in->str!='\0')    //2
-    {
-      ret->str=in->str;                               //3
-      ret->str++;
-      in->str++;                                   //4
-    }
-    ret->str='\0';
-
-	ret->buf_len = in->buf_len;
-	ret->len = ret->len;
-
-	return ret;
-}
-
-int simp_str_format(simp_str *in, const char *fmt, ...) {
-	
-	free(*in->str);
-
-	char dest[1024 * 16]; // this is ugly
-	va_list argptr;
-    va_start(argptr, fmt);
-    vsprintf(dest, fmt, argptr);
-    va_end(argptr);
-
-    in->str = dest;
-
-	return 0;
-}
+#include "include/simp_str.h"
 
 /***************
  * Do not edit 
@@ -113,13 +44,13 @@ int main(int argc, char **argv)
 	simp_str *copied_str = simp_str_copy(str1);
 	simp_str *copied_str2 = simp_str_copy2(str1);
 
-	printf("created a string [%s] with len [%i] and buf_len [%i]\n\n", str1->str, str1->len, str1->buf_len);
+	printf("created a string [%s] with len [%zu] and buf_len [%zu]\n\n", str1->str, str1->len, str1->buf_len);
 
 	printf("str1 and str2 match result: %i\n\n", simp_str_equals(str1, str2));
 	printf("str1 and str3 match result: %i\n\n", simp_str_equals(str1, str3));
 
 	simp_str_format(str1, "string is %d", 5);
-	printf("str1 is now [%s] with len [%i] and buf_len [%i]\n\n", str1->str, str1->len, str1->buf_len);
+	printf("str1 is now [%s] with len [%zu] and buf_len [%zu]\n\n", str1->str, str1->len, str1->buf_len);
 
 	printf("cleaning up\n\n");
 	simp_str_destroy(str1);

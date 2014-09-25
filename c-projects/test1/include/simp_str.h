@@ -13,5 +13,6 @@ int simp_str_equals(simp_str *s1, simp_str *s2); // return 0 if equal, otherwise
 int simp_str_format(simp_str *in, const char *fmt, ...); // sprintf style formatting INTO simp_str *in.
 														 //returns 0 on success
 simp_str* simp_str_copy(simp_str*);
+simp_str* simp_str_copy2(simp_str*);
 
 #endif //SIMP_STR_H
