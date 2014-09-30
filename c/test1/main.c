@@ -34,6 +34,18 @@ int test_bit(unsigned int number, unsigned char position) {
 	return (number>>(position)) & 1;
 }
 
+int reverse_string(char *str) {
+	int l=0;
+  	int r=strlen(str)-1;
+  	while(l < r) {
+  		str[l] ^= str[r];
+  		str[r] ^= str[l];
+  		str[l] ^= str[r];
+  		++l;
+  		--r;
+  	}
+}
+
 int main(int argc, char **argv)
 {
 	printf("big edian: %i\n\n", is_big_endian());
@@ -70,6 +82,10 @@ int main(int argc, char **argv)
 	int bit_to_test = 4;
 
 	printf("test_bit %i of %i returns %i\n\n", bit_to_test, number_to_test, test_bit(number_to_test,bit_to_test));
+
+	char mystr[] = "\n\nthe quick brown fox";
+	reverse_string(mystr);
+	printf("mystr: %s", mystr);
 
 	printf("press enter to exit.\n");
 
